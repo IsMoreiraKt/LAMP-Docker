@@ -1,0 +1,5 @@
+# Environment Files
+*.env
+
+# SSL e TLS Files
+*.pem
