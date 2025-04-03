@@ -1,0 +1,8 @@
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=lamp_db
+MYSQL_USER=lamp_user
+MYSQL_PASSWORD=lamp_pass
+
+PMA_HOST=mysql
+PMA_USER=root
+PMA_PASSWORD=root
