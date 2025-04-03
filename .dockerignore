@@ -1,0 +1,11 @@
+# Git Files
+git/
+.gitignore
+
+# Repository Files
+LICENSE
+*.md
+
+# Configuration Scripts
+conf.sh
+conf.ps1
