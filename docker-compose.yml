@@ -1,0 +1,43 @@
+services:
+  php-apache:
+    build: .
+    container_name: php-container
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/ssl:/etc/mysql/ssl
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
+      MYSQL_SSL_CA: /etc/mysql/ssl/ca.pem
+      MYSQL_SSL_CERT: /etc/mysql/ssl/server-cert.pem
+      MYSQL_SSL_KEY: /etc/mysql/ssl/server-key.pem
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
