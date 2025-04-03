@@ -1,0 +1,4 @@
+[mysqld]
+query_cache_size = 16M
+max_connections = 200
+require_secure_transport = ON
